@@ -536,7 +536,8 @@ function start_kubeasz_docker() {
   logger info "try to run kubeasz in a container"
   # get host's IP
   host_if=$(ip route|grep default|head -n1|cut -d' ' -f5)
-  host_ip=$(ip a|grep "$host_if$"|head -n1|awk '{print $2}'|cut -d'/' -f1)
+  # host_ip=$(ip a|grep "$host_if$"|head -n1|awk '{print $2}'|cut -d'/' -f1)
+  host_ip=$(ip a | grep 10.50 | awk '{print $2}' | awk -F '/' '{print $1}')
   logger debug "get host IP: $host_ip"
 
   # allow ssh login using key locally
